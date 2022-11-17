@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  errors:
+    unauthorized: "Unauthorized"
+    unprocessable_entity: "Unprocessable Entity"
+    admin_only_access: "Unauthorized! Only admins have credentials to access this resource."
+    title_already_exists: "The title of the convention you're trying to create already exists."
