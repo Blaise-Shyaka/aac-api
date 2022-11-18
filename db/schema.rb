@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_17_124711) do
+ActiveRecord::Schema.define(version: 2022_11_17_181537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conventions", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "theme", null: false
+    t.boolean "active", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_conventions_on_user_id"
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "country", null: false
+    t.string "phone_number", null: false
+    t.string "passport_number", null: false
+    t.string "email", null: false
+    t.boolean "confirmed", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "convention_id"
+    t.index ["convention_id"], name: "index_registrations_on_convention_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
