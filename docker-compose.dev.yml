@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+    aac_new_api:
+        build: .
+        restart: "no"
+        container_name: aac_new_api
+        environment:
+            - DBHOST=postgresql
+            - DBUSER=postgres
+            - DBPASS=password
+        ports:
+            - 4001:4000
+        depends_on:
+            - postgresql
+
+    postgresql:
+        image: postgres
+        restart: "no"
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_DB: aac_api_development
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+        volumes:
+            - postgresdb:/var/lib/postgresql/data/
+
+volumes:
+    postgresdb:
