@@ -36,3 +36,5 @@ en:
     unprocessable_entity: "Unprocessable Entity"
     admin_only_access: "Unauthorized! Only admins have credentials to access this resource."
     title_already_exists: "The title of the convention you're trying to create already exists."
+    registration_confirmation_failed: "Error! We were not able to confirm your email"
+    registration_not_found: "Error! We did not find an email associated with your registration in our system"

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV["SENDER_EMAIL"]
+  default from: "AAC 2023 Team, no-reply@arsenalafricaconvention.rw"
   layout 'mailer'
 end

@@ -10,8 +10,21 @@ class Delegate::RegistrationsController < ApplicationController
     end
   end
 
+  def update
+    @delegate = Registration.find(params[:id])
+    if @delegate.update({ confirmed: true })
+      render json: { status: 200, data: RegistrationSerializer.new(@delegate).serializable_hash[:data][:attributes] }
+    else
+      render json: { error: { status: 400, message: I18n.t('registration_confirmation_failed') } }
+    end
+  end
+
   private
   def permitted_params
     params.require(:registration).permit(:first_name, :last_name, :country, :phone_number, :passport_number, :email, :sex, :birth_date)
   end
+
+  # def confirm_registration_params
+  #   params.require(:registration).permit(:registration_id)
+  # end
 end
