@@ -28,6 +28,6 @@
 
 # Ignore environment variable
 .env
-
+.idea
 # Ignore docker-compose
 docker-compose.yml

@@ -21,7 +21,7 @@ class Delegate::RegistrationsController < ApplicationController
 
   private
   def permitted_params
-    params.require(:registration).permit(:first_name, :last_name, :country, :phone_number, :passport_number, :email, :sex, :birth_date)
+    params.require(:registration).permit(:first_name, :last_name, :country, :phone_number, :passport_number, :email)
   end
 
   # def confirm_registration_params
