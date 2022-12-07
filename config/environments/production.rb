@@ -111,4 +111,18 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.secret_key_base = ENV["SECRET_KEY_BASE"]
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'arsenalafricaconvention.rw' }
+  config.action_mailer.perform_deliveries = true
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'gmail.com',
+    :user_name            => ENV['SENDER_EMAIL'],
+    :password             => ENV['SENDER_EMAIL_PASSWORD'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 end

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi <%= @delegate.first_name %>,</p>
+    <p>
+      Your registration for the Arsenal Africa Convention 2023 is well received!
+    </p>
+    <p>To confirm your registration, please confirm your email account by
+        clicking this link: <%= "https://www.arsenalafricaconvention.rw/registrations/#{@delegate.id}/confirm" %>
+    </p>
+  </body>
+</html>
