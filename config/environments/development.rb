@@ -67,4 +67,5 @@ Rails.application.configure do
 
   # Open emails in the browser with letter_opener
   config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end
