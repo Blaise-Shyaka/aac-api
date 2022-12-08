@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_17_181537) do
+ActiveRecord::Schema.define(version: 2022_12_08_151938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2022_11_17_181537) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "convention_id"
+    t.datetime "birth_date"
+    t.string "sex"
     t.index ["convention_id"], name: "index_registrations_on_convention_id"
   end
 
@@ -65,4 +67,15 @@ ActiveRecord::Schema.define(version: 2022_11_17_181537) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "youth_camp_registrations", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "sex", null: false
+    t.datetime "birth_date", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "registration_id", null: false
+    t.index ["registration_id"], name: "index_youth_camp_registrations_on_registration_id"
+  end
+
+  add_foreign_key "youth_camp_registrations", "registrations"
 end

@@ -1,9 +1,11 @@
 class Delegate::RegistrationsController < ApplicationController
   def create
     @active_convention = Convention.where(active: true).first
-    @registration = @active_convention.registrations.new(permitted_params)
+    @registration = @active_convention.registrations.new(permitted_params.except(:youth_camps))
     if @registration.save!
       RegistrationMailer.with(delegate: @registration).confirm_registration.deliver_later
+      youth_camp_parameters = permitted_params.except(:first_name, :last_name, :country, :phone_number, :passport_number, :email, :sex, :birth_date).require(:youth_camps)
+      @registration.youth_camp_registrations.create(youth_camp_parameters)
       render json: { status: 201, data: RegistrationSerializer.new(@registration).serializable_hash[:data][:attributes] }
     else
       render json: { error: { status: 422, message: I18n.t('errors.unprocessable_entity') } }
@@ -21,10 +23,6 @@ class Delegate::RegistrationsController < ApplicationController
 
   private
   def permitted_params
-    params.require(:registration).permit(:first_name, :last_name, :country, :phone_number, :passport_number, :email)
+    params.require(:registration).permit(:first_name, :last_name, :country, :phone_number, :passport_number, :email, :sex, :birth_date, youth_camps: [:full_name, :birth_date, :sex])
   end
-
-  # def confirm_registration_params
-  #   params.require(:registration).permit(:registration_id)
-  # end
 end
