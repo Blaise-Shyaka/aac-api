@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_08_151938) do
+ActiveRecord::Schema.define(version: 2022_12_08_202826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2022_12_08_151938) do
   end
 
   create_table "youth_camp_registrations", force: :cascade do |t|
-    t.string "full_name", null: false
-    t.string "sex", null: false
-    t.datetime "birth_date", null: false
+    t.string "full_name"
+    t.string "sex"
+    t.datetime "birth_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "registration_id", null: false
